@@ -240,6 +240,9 @@ class Indicator:
         Gtk.main()
 
     def logout(self):
+        if os.environ.get("XDG_SESSION_DESKTOP", "UNSUPPORTED").lower().startswith("awesome"):
+            os.system("echo 'awesome.quit()' | awesome-client")
+
         env = os.environ.get("XDG_CURRENT_DESKTOP", "UNSUPPORTED")
         if env:
             env = env.lower()
